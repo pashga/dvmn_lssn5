@@ -1,7 +1,7 @@
 import file_operations, random, os
 from faker import Faker
 
-skills = [
+SKILLS = [
     "Стремительный прыжок",
     "Электрический выстрел",
     "Ледяной удар",
@@ -11,7 +11,7 @@ skills = [
     "Ледяной выстрел",
     "Огненный заряд",
 ]
-rune_letters = {
+RUNE_LETTERS = {
     'а': 'а͠',
     'б': 'б̋',
     'в': 'в͒͠',
@@ -85,13 +85,13 @@ def main():
     os.makedirs("cards", exist_ok=True)
     fake = Faker("ru_RU")
     for card in range(10):
-        skills_sample = random.sample(skills, 3)
-        with open("charsheet.svg", "r") as cards:
+        skills_sample = random.sample(SKILLS, 3)
+        with open("charsheet.svg", "r"):
             runic_skills = []
             for word in skills_sample:
                 for letter in word:
-                    if letter in rune_letters.keys():
-                        word = word.replace(letter, rune_letters[letter])
+                    if letter in RUNE_LETTERS.keys():
+                        word = word.replace(letter, RUNE_LETTERS[letter])
                 runic_skills.append(word)
             context = {
                 "first_name": fake.first_name(),
