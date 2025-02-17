@@ -86,27 +86,26 @@ def main():
     fake = Faker("ru_RU")
     for card in range(10):
         skills_sample = random.sample(SKILLS, 3)
-        with open("charsheet.svg", "r"):
-            runic_skills = []
-            for word in skills_sample:
-                for letter in word:
-                    if letter in RUNE_LETTERS.keys():
-                        word = word.replace(letter, RUNE_LETTERS[letter])
-                runic_skills.append(word)
-            context = {
-                "first_name": fake.first_name(),
-                "last_name": fake.last_name(),
-                "job": fake.job(),
-                "town": fake.city(),
-                "strength": random.randint(3, 18),
-                "agility": random.randint(3, 18),
-                "endurance": random.randint(3, 18),
-                "intelligence": random.randint(3, 18),
-                "luck": random.randint(3, 18),
-                "skill_1": runic_skills[0],
-                "skill_2": runic_skills[1],
-                "skill_3": runic_skills[2],
-            }
+        runic_skills = []
+        for word in skills_sample:
+            for letter in word:
+                if letter in RUNE_LETTERS.keys():
+                    word = word.replace(letter, RUNE_LETTERS[letter])
+            runic_skills.append(word)
+        context = {
+            "first_name": fake.first_name(),
+            "last_name": fake.last_name(),
+            "job": fake.job(),
+            "town": fake.city(),
+            "strength": random.randint(3, 18),
+            "agility": random.randint(3, 18),
+            "endurance": random.randint(3, 18),
+            "intelligence": random.randint(3, 18),
+            "luck": random.randint(3, 18),
+            "skill_1": runic_skills[0],
+            "skill_2": runic_skills[1],
+            "skill_3": runic_skills[2],
+        }
 
         file_operations.render_template("charsheet.svg", f"cards/result_{card+1}.svg", context)
 
