@@ -106,7 +106,6 @@ def main():
             "skill_2": runic_skills[1],
             "skill_3": runic_skills[2],
         }
-
         file_operations.render_template("charsheet.svg", f"cards/result_{card+1}.svg", context)
 
 if __name__ == "__main__":
